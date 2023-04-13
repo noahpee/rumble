@@ -2,6 +2,10 @@ body {
     box-sizing: border-box;
 }
 
+h1{
+    text-align: center;
+}
+
 header {
     display: flex;
     justify-content: space-evenly;
@@ -11,7 +15,7 @@ header {
 
 main {
     height: 70vh;
-    width: 70vw;
+    width: 100vw;
     margin: 0 auto;
 }
 
@@ -22,8 +26,8 @@ p {
 }
 
 .randomContainer {
-    width: 100%;
-    height: 57.5%;
+    width: 67.5%;
+    height: 95%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 0.5%;
@@ -34,7 +38,8 @@ p {
 .random-tile {
     display: flex;
     flex-direction: column;
-    height: auto;
+    text-align: center;
+    height: 100%;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     margin: 0 20px;
@@ -52,4 +57,27 @@ p {
     text-align: center;
     margin: 2% auto;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.ttt{
+    height: 60%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+ol {
+    width: 26%;
+    margin: 0;
+    height: 100%;
+    overflow: scroll;
+    padding-left: 25px;
+    padding-top: 10px;
+}
+
+.charts {
+    margin-top: 20px;
+    max-height: 200px;
+    max-width: 90%;
+    margin-left: 40px;
 }

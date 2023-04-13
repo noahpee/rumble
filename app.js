@@ -8,6 +8,16 @@ let objects = []
 
 let displayArray = []
 
+let barNames = []
+
+let barViews = []
+
+let barVotes = []
+
+let ch = false
+
+let CHAR;
+
 let totalClicks = document.getElementById('questionsInput').value
 
 let gridColumns = document.getElementById('rowsInput').value
@@ -53,15 +63,15 @@ function randomNumbers() {
 
             displayArray.push(ran)
             let p = document.createElement('p');
-            let img = document.createElement('div');
+            let img = document.createElement('img');
             let tile = document.createElement('div')
             tile.className = 'random-tile'
             img.id = ran
             img.className = 'random-image'
-            img.style.backgroundImage = `url(${objects[ran].src})`
+            img.src = objects[ran].src
             p.textContent = objects[ran].name
             tile.appendChild(img)
-            img.appendChild(p)
+            tile.appendChild(p)
             container.appendChild(tile)
             objects[ran].views ++
             viewers[ran] = objects[ran].views
@@ -82,6 +92,10 @@ function randomNumbers() {
 
 function finalList() {
 
+    barNames = []
+    barViews = []
+    barVotes = []
+
     const sortable = Object.entries(votes)
     .sort(([,a],[,b]) => b-a)
     .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
@@ -101,7 +115,49 @@ function finalList() {
         let finals = document.createElement('li');
         finals.textContent = `${Object.keys(votes)[f]} has a total of ${Object.values(votes)[f]} votes and was seen ${objects[index].views} times (${Math.round((Object.values(votes)[f]/objects[index].views)*100)}%)`
         listItems.appendChild(finals)
+        barNames.push(Object.keys(votes)[f])
+        barViews.push(objects[index].views)
+        barVotes.push(Object.values(votes)[f])
     }
+    const ctx = document.getElementById('myChart');
 
-    return 
+    ctx.innerHTML = ''
+
+    return hitBut()
+}
+
+function hitBut() {
+
+    if (ch == true) {
+        CHAR.destroy()
+    } 
+
+    ch = true
+
+    const ctx = document.getElementById('myChart');    
+
+    CHAR = new Chart(ctx, {
+
+    type: 'bar',
+    data: {
+    labels: [...barNames],
+    datasets: [{
+        label: '# of Votes',
+        data: [...barVotes],
+        borderWidth: 1
+    },
+    {
+        label: '# of views',
+        data: [...barViews],
+        borderWidth: 1
+    }]
+    },
+    options: {
+    scales: {
+        y: {
+        beginAtZero: true
+        }
+    }
+    }
+});
 }

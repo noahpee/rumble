@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h1>Odd Duck Shop</h1>
     <header>
         <button onclick="randomNumbers()">hit me</button>
         <label for="qi">votes</label>
@@ -16,8 +17,14 @@
         <input type="number" name="ri" id="rowsInput" onchange="rowNumber()" value="3">
     </header>
     <main>
-        <div id="randomContainer" class="randomContainer"></div>
+        <div class="ttt">
         <ol id="finalScore"></ol>
+        <div id="randomContainer" class="randomContainer"></div>
+        </div>
+        <div>
+            <canvas class="charts" id="myChart"></canvas>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </main>
     <footer></footer>
 </body>
