@@ -42,6 +42,7 @@ function questionNumber() {
 
 function rowNumber() {
     gridColumns = document.getElementById('rowsInput').value
+    randomNumbers()
 }
 
 function randomNumbers() {
@@ -151,7 +152,7 @@ function hitBut() {
         borderWidth: 1
     },
     {
-        label: '# of views',
+        label: '# of Views',
         data: [...barViews],
         borderWidth: 1
     }]
