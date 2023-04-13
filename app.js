@@ -8,6 +8,8 @@ let objects = []
 
 let displayArray = []
 
+let previousArray = []
+
 let barNames = []
 
 let barViews = []
@@ -49,13 +51,15 @@ function randomNumbers() {
     container.style.gridTemplateColumns = `repeat(${gridColumns}, 1fr)`
     document.getElementById('finalScore').innerHTML = ''
 
+    previousArray = displayArray
+
     displayArray = []
 
     for (j = 0;j < gridColumns;j++) {
 
         let ran = parseInt(Math.floor(Math.random() * 17) + 0)
 
-        if (displayArray.includes(ran)) {
+        if (displayArray.includes(ran) || (previousArray).includes(ran)) {
 
             j -= 1
 
