@@ -42,7 +42,12 @@ function questionNumber() {
 
 function rowNumber() {
     gridColumns = document.getElementById('rowsInput').value
-    randomNumbers()
+
+    if (gridColumns > 8 || gridColumns < 3) {
+        return
+    } else {
+        randomNumbers()
+    }
 }
 
 function randomNumbers() {
