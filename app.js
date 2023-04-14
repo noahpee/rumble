@@ -1,5 +1,9 @@
-const items = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','tauntaun','unicorn','water-can','wine-glass']
 
+const items = {
+    items:['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','tauntaun','unicorn','water-can','wine-glass'],
+    darkMode: true,
+    comment: "",
+  };
 let votes = {}
 
 let viewers = {}
@@ -20,9 +24,29 @@ let ch = false
 
 let CHAR;
 
+let settings;
+
 let totalClicks = document.getElementById('questionsInput').value
 
 let gridColumns = document.getElementById('rowsInput').value
+
+function saveSettings() {
+    stringify = JSON.stringify(settings);
+    localStorage.setItem("items", stringify);
+    console.log(stringify)
+
+  }
+
+  function loadSettings() {
+    getSettings = localStorage.getItem("items");
+    if (getSettings) {
+      settings = JSON.parse(getSettings);
+    }
+  }
+
+  loadSettings()
+
+  console.log(settings)
 
 function RandomObject(name, image) {
     this.name = name
@@ -31,8 +55,8 @@ function RandomObject(name, image) {
     this.clicks = 0
 }
 
-for (i = 0;i < items.length;i++) {
-    let list = new RandomObject(items[i], `./images/${items[i]}.jpeg`)
+for (i = 0;i < settings.items.length;i++) {
+    let list = new RandomObject(settings.items[i], `./images/${settings.items[i]}.jpeg`)
     objects.push(list)
 }
 
@@ -171,3 +195,51 @@ function hitBut() {
     }
 });
 }
+
+function enterDarkMode() {
+    let body = document.body;
+    let button = document.getElementById("darkButton");
+    body.classList.remove("light");
+    body.classList.add("dark");
+    button.setAttribute("checked", "checked");
+    settings.darkMode = true;
+    saveSettings();
+  }
+  
+  function enterLightmode() {
+    let body = document.body;
+    let button = document.getElementById("lightButton");
+    body.classList.remove("dark");
+    body.classList.add("light");
+    button.setAttribute("checked", "checked");
+    settings.darkMode = false;
+    saveSettings();
+  }
+
+  function pageLoad() {
+    let savedSettings = localStorage.getItem("items");
+    if (!savedSettings) {
+      return;
+    }
+    loadSettings();
+    if (settings.darkMode) {
+      enterDarkMode();
+    } else {
+      enterLightmode();
+    }
+  //  commentBox.value = settings.comment;
+  }
+  let mode = document.getElementsByClassName("mode");
+
+  for (let i = 0; i < mode.length; i++) {
+    mode[i].addEventListener("click", function () {
+      if (this.value === "dark") {
+        enterDarkMode();
+      }
+      if (this.value === "light") {
+        enterLightmode();
+      }
+    });
+  }
+  
+  pageLoad()

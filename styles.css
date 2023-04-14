@@ -77,3 +77,13 @@ ol {
     max-width: 90%;
     margin-left: 40px;
 }
+
+.dark {
+    color: white;
+    background-color: #555;
+  }
+  
+  .light {
+    color: black;
+    background-color: white;
+  }

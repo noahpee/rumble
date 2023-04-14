@@ -15,6 +15,16 @@
         <label for="ri">columns</label>
         <input type="number" name="ri" id="rowsInput" onchange="rowNumber()" value="3">
         <button onclick="randomNumbers()">hit me</button>
+        <form>
+            <label for="dark">
+              <input type="radio" name="mode" id="darkButton" class="mode" value="dark" />
+              <span>Dark mode</span>
+            </label>
+            <label for="light">
+              <input type="radio" name="mode" id="lightButton" class="mode" value="light" checked />
+              <span>Light Mode</span>
+            </label>
+          </form>
     </header>
     <main>
         <div class="ttt">
